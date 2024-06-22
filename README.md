@@ -1,101 +1,87 @@
-# Localhost FakeStore API Endpoints
+Fake Store API - Product Controller
+This Spring Boot application provides RESTful API endpoints for managing products and categories using the Fake Store API.
 
-This document outlines the available endpoints provided by your local instance of the FakeStore API.
+Endpoints
+Get All Products
+GET http://localhost:8080/api/products
 
-## Products
+Returns a list of all products.
 
-- **Get all products:**
-  - Method: GET
-  - URL: `http://localhost:8080/products`
+Get Product by ID
+GET http://localhost:8080/api/products/{id}
 
-- **Get a single product by id:**
-  - Method: GET
-  - URL: `http://localhost:8080/products/{id}`
-  - Example: `http://localhost:8080/products/1`
+Returns a specific product by its ID.
 
-- **Limit results (e.g., limit to 5 products):**
-  - Method: GET
-  - URL: `http://localhost:8080/products?limit=5`
+Get Limited Products
+GET http://localhost:8080/api/products/limited?limit={limit}
 
-- **Sort results (ascending or descending):**
-  - Method: GET
-  - URL: `http://localhost:8080/products?sort=asc`
-  - Possible values for `sort`: `asc` (ascending) or `desc` (descending)
+Returns a limited number of products. Default limit is 5, adjustable with limit query parameter.
 
-## Cart
+Get Sorted Products
+GET http://localhost:8080/api/products/sorted?sort={sort}
 
-- **Get all carts:**
-  - Method: GET
-  - URL: `http://localhost:8080/carts`
+Returns products sorted by price in ascending or descending order. Specify sort order with sort query parameter (asc or desc).
 
-- **Get a single cart by id:**
-  - Method: GET
-  - URL: `http://localhost:8080/carts/{id}`
-  - Example: `http://localhost:8080/carts/5`
+Get All Categories
+GET http://localhost:8080/api/products/categories
 
-- **Limit results (e.g., limit to 5 carts):**
-  - Method: GET
-  - URL: `http://localhost:8080/carts?limit=5`
+Returns a list of all product categories.
 
-- **Sort results (ascending or descending):**
-  - Method: GET
-  - URL: `http://localhost:8080/carts?sort=desc`
-  - Possible values for `sort`: `asc` (ascending) or `desc` (descending)
+Get Products by Category
+GET http://localhost:8080/api/products/category/{category}
 
-- **Get carts in a date range:**
-  - Method: GET
-  - URL: `http://localhost:8080/carts?startdate={startdate}&enddate={enddate}`
-  - Example: `http://localhost:8080/carts?startdate=2019-12-10&enddate=2020-10-10`
+Returns products belonging to a specific category.
 
-- **Get user carts:**
-  - Method: GET
-  - URL: `http://localhost:8080/carts/user/{userId}`
-  - Example: `http://localhost:8080/carts/user/2`
+Add Product
+POST http://localhost:8080/api/products
 
-## Categories
+Adds a new product. Requires a JSON object representing the product in the request body.
 
-- **Get all categories:**
-  - Method: GET
-  - URL: `http://localhost:8080/products/categories`
+Update Product
+PUT http://localhost:8080/api/products/{id}
 
-- **Get products in a specific category:**
-  - Method: GET
-  - URL: `http://localhost:8080/products/category/{category}`
-  - Example: `http://localhost:8080/products/category/jewelery`
+Updates an existing product identified by its ID. Requires a JSON object representing the updated product in the request body.
 
-## Users
+Delete Product
+DELETE http://localhost:8080/api/products/{id}
 
-- **Get all users:**
-  - Method: GET
-  - URL: `http://localhost:8080/users`
+Deletes a product by its ID.
 
-- **Get a single user by id:**
-  - Method: GET
-  - URL: `http://localhost:8080/users/{id}`
-  - Example: `http://localhost:8080/users/1`
+Technologies Used
+Java
+Spring Boot
+Spring Web
+RESTful API
+Mockito for testing
+Running the Application
+To run the application locally, ensure you have Java and Maven installed. Then follow these steps:
 
-- **Limit results (e.g., limit to 5 users):**
-  - Method: GET
-  - URL: `http://localhost:8080/users?limit=5`
+Clone the repository:
 
-- **Sort results (ascending or descending):**
-  - Method: GET
-  - URL: `http://localhost:8080/users?sort=desc`
-  - Possible values for `sort`: `asc` (ascending) or `desc` (descending)
+bash
+Copy code
+git clone <repository-url>
+cd <project-directory>
+Build the application:
 
-## Login
+bash
+Copy code
+mvn clean install
+Run the application:
 
-- **User login:**
-  - Method: POST
-  - URL: `http://localhost:8080/auth/login`
-  - Example request body:
-    ```json
-    {
-        "username": "mor_2314",
-        "password": "83r5^_"
-    }
-    ```
+bash
+Copy code
+java -jar target/<jar-file-name>.jar
+Replace <jar-file-name> with the actual name of the generated JAR file.
 
----
+Access the API endpoints locally using:
 
-Use these endpoints to interact with your local instance of the FakeStore API running on `localhost`. Adjust the URLs and ports (`8080` in the examples) according to your actual setup.
+bash
+Copy code
+http://localhost:8080/api/products
+Replace 8080 with the port number configured for your application if different.
+
+Testing
+Unit tests for the ProductController and ProductService are included in the project to ensure the functionality of the endpoints.
+
+Feel free to customize this README.md according to your project specifics and additional features. This template covers basic endpoint descriptions, technologies used, running instructions, and testing information. Adjust URLs and ports as per your Spring Boot application configuration.
