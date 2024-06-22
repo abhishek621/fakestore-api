@@ -2,7 +2,7 @@
 
 This Spring Boot application provides RESTful API endpoints for managing products and categories using the Fake Store API.
 
-## Endpoints
+## Product Endpoints
 
 ### Get All Products
 
