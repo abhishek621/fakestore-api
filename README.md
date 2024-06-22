@@ -71,8 +71,8 @@ Deletes a product by its ID.
 To run the application locally, ensure you have Java and Maven installed. Then follow these steps:
 
 1. Clone the repository:
-   git clone <repository-url>
-   cd <project-directory>
+   git clone https://github.com/abhishek621/fakestore-api
+   cd fakestore-api
 
 2. Build the application:
    mvn clean install
