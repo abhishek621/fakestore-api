@@ -10,7 +10,7 @@ import com.abhishek.fakestore.api.service.AuthService;
 @Service
 public class AuthServiceImpl implements AuthService {
 
-    @Value("${fakestore.api.url}")
+    @Value("${auth.fakestore.api.url}")
     private String apiUrl;
 
     private final RestTemplate restTemplate;
@@ -29,7 +29,7 @@ public class AuthServiceImpl implements AuthService {
         loginRequest.setPassword(password);
 
         HttpEntity<LoginRequest> request = new HttpEntity<>(loginRequest, headers);
-        ResponseEntity<String> response = restTemplate.postForEntity(apiUrl + "/auth/login", request, String.class);
+        ResponseEntity<String> response = restTemplate.postForEntity(apiUrl, request, String.class);
         return response.getBody();
     }
 }

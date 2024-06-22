@@ -18,37 +18,37 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/users")
+    @GetMapping("/")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/{id}")
     public User getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
     }
 
-    @GetMapping("/users/limited")
+    @GetMapping("/limited")
     public List<User> getUsersLimited(@RequestParam(defaultValue = "5") int limit) {
         return userService.getUsersLimited(limit);
     }
-
-    @GetMapping("/users/sorted")
+    
+    @GetMapping("/sorted")
     public List<User> getUsersSorted(@RequestParam(defaultValue = "asc") String sort) {
         return userService.getUsersSorted(sort);
     }
 
-    @PostMapping("/users")
+    @PostMapping
     public User addUser(@RequestBody User user) {
         return userService.addUser(user);
     }
 
-    @PutMapping("/users/{id}")
+    @PutMapping("/{id}")
     public User updateUser(@PathVariable Long id, @RequestBody User user) {
         return userService.updateUser(id, user);
     }
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
     }

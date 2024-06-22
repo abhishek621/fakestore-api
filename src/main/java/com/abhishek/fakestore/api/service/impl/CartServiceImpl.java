@@ -1,8 +1,8 @@
 package com.abhishek.fakestore.api.service.impl;
 
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -18,7 +18,7 @@ import com.abhishek.fakestore.api.service.CartService;
 @Service
 public class CartServiceImpl implements CartService {
 
-    @Value("${fakestore.api.url}")
+    @Value("${cart.fakestore.api.url}")
     private String apiUrl;
 
     private final RestTemplate restTemplate;
@@ -29,37 +29,38 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public List<Cart> getAllCarts() {
-        ResponseEntity<Cart[]> response = restTemplate.getForEntity(apiUrl + "/carts", Cart[].class);
+        ResponseEntity<Cart[]> response = restTemplate.getForEntity(apiUrl, Cart[].class);
         return Arrays.asList(response.getBody());
     }
 
     @Override
     public Cart getCartById(Long id) {
-        return restTemplate.getForObject(apiUrl + "/carts/" + id, Cart.class);
+        return restTemplate.getForObject(apiUrl + "/" + id, Cart.class);
     }
 
     @Override
     public List<Cart> getCartsLimited(int limit) {
-        ResponseEntity<Cart[]> response = restTemplate.getForEntity(apiUrl + "/carts?limit=" + limit, Cart[].class);
+        ResponseEntity<Cart[]> response = restTemplate.getForEntity(apiUrl + "?limit=" + limit, Cart[].class);
         return Arrays.asList(response.getBody());
     }
 
     @Override
     public List<Cart> getCartsSorted(String sort) {
-        ResponseEntity<Cart[]> response = restTemplate.getForEntity(apiUrl + "/carts?sort=" + sort, Cart[].class);
+        ResponseEntity<Cart[]> response = restTemplate.getForEntity(apiUrl + "?sort=" + sort, Cart[].class);
         return Arrays.asList(response.getBody());
     }
 
     @Override
-    public List<Cart> getCartsByDateRange(LocalDate startDate, LocalDate endDate) {
-        ResponseEntity<Cart[]> response = restTemplate.getForEntity(
-                apiUrl + "/carts?startdate=" + startDate + "&enddate=" + endDate, Cart[].class);
+    public List<Cart> getCartsByDateRange(String startDate, String endDate) {
+    	String url = String.format("%s?startdate=%s&enddate=%s", apiUrl, startDate, endDate);
+        ResponseEntity<Cart[]> response = restTemplate.getForEntity(url, Cart[].class);
         return Arrays.asList(response.getBody());
     }
 
     @Override
-    public List<Cart> getUserCarts(Long userId) {
-        ResponseEntity<Cart[]> response = restTemplate.getForEntity(apiUrl + "/carts/user/" + userId, Cart[].class);
+    public List<Cart> getCartsByUserId(Long userId) {
+        String url = String.format("%s/user/%d", apiUrl, userId);
+        ResponseEntity<Cart[]> response = restTemplate.getForEntity(url, Cart[].class);
         return Arrays.asList(response.getBody());
     }
 
@@ -69,7 +70,7 @@ public class CartServiceImpl implements CartService {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<Cart> request = new HttpEntity<>(cart, headers);
-        ResponseEntity<Cart> response = restTemplate.exchange(apiUrl + "/carts",
+        ResponseEntity<Cart> response = restTemplate.exchange(apiUrl,
                 HttpMethod.POST,
                 request,
                 Cart.class);
@@ -83,7 +84,7 @@ public class CartServiceImpl implements CartService {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<Cart> request = new HttpEntity<>(cart, headers);
-        ResponseEntity<Cart> response = restTemplate.exchange(apiUrl + "/carts/" + id,
+        ResponseEntity<Cart> response = restTemplate.exchange(apiUrl + id,
                 HttpMethod.PUT,
                 request,
                 Cart.class);
@@ -93,6 +94,6 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public void deleteCart(Long id) {
-        restTemplate.delete(apiUrl + "/carts/" + id);
+        restTemplate.delete(apiUrl + id);
     }
 }

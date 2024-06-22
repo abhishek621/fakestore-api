@@ -20,7 +20,7 @@ import java.util.List;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-	@Value("${fakestore.api.url}")
+	@Value("${product.fakestore.api.url}")
 	private String apiUrl;
 
 	private final RestTemplate restTemplate;
