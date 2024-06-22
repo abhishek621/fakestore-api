@@ -71,6 +71,7 @@ Deletes a product by its ID.
 To run the application locally, ensure you have Java and Maven installed. Then follow these steps:
 
 1. Clone the repository:
+   
    git clone https://github.com/abhishek621/fakestore-api
 
    cd fakestore-api
@@ -79,11 +80,13 @@ To run the application locally, ensure you have Java and Maven installed. Then f
    mvn clean install
 
 4. Run the application:
-java -jar target/<jar-file-name>.jar
+   
+   java -jar target/<jar-file-name>.jar
 
-Replace <jar-file-name> with the actual name of the generated JAR file.
+   Replace <jar-file-name> with the actual name of the generated JAR file.
 
 5. Access the API endpoints locally using:
-http://localhost:8080/api/products
+   
+   http://localhost:8080/api/products
 
-Replace 8080 with the port number configured for your application if different.
+   Replace 8080 with the port number configured for your application if different.
