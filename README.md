@@ -76,7 +76,8 @@ To run the application locally, ensure you have Java and Maven installed. Then f
 
    cd fakestore-api
 
-3. Build the application:
+2. Build the application:
+   
    mvn clean install
 
 4. Run the application:
