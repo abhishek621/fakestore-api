@@ -72,15 +72,18 @@ To run the application locally, ensure you have Java and Maven installed. Then f
 
 1. Clone the repository:
    git clone https://github.com/abhishek621/fakestore-api
+
    cd fakestore-api
 
-2. Build the application:
+3. Build the application:
    mvn clean install
 
-3. Run the application:
+4. Run the application:
 java -jar target/<jar-file-name>.jar
+
 Replace <jar-file-name> with the actual name of the generated JAR file.
 
-4. Access the API endpoints locally using:
+5. Access the API endpoints locally using:
 http://localhost:8080/api/products
+
 Replace 8080 with the port number configured for your application if different.
