@@ -13,6 +13,7 @@ import com.abhishek.fakestore.api.model.Category;
 import com.abhishek.fakestore.api.model.Product;
 import com.abhishek.fakestore.api.service.ProductService;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,12 +32,20 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> getAllProducts() {
 		Product[] products = restTemplate.getForObject(apiUrl, Product[].class);
+		if (products == null) {
+            return new ArrayList<>();
+        }
 		return Arrays.asList(products);
 	}
 
 	@Override
 	public Product getProductById(Long id) {
+		 try {
 		return restTemplate.getForObject(apiUrl + "/" + id, Product.class);
+		 }catch (Exception ex) {
+	        ex.getMessage();
+	        return null;
+	    }
 	}
 
 	@Override
