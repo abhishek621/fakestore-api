@@ -91,4 +91,4 @@ To run the application locally, ensure you have Java and Maven installed. Then f
    http://localhost:8080/api/products
 
    Replace 8080 with the port number configured for your application if different.
->>>>>>> b8e301bfa522bb2e3b1538e71ad1ab90404dd889
+
