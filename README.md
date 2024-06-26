@@ -1,4 +1,4 @@
-# Fake Store API - Product Controller
+# Fake Store API
 
 This Spring Boot application provides RESTful API endpoints for managing products and categories using the Fake Store API.
 
